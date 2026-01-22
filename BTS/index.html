@@ -3,2014 +3,1154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DataInsight AI - Analyse Intelligente de Données</title>
+	<meta name="description" content="Site personnel gratuit créé en HTML, accessible à tous et hébergé sur GitHub Pages.">
+	<meta name="keywords" content="https://github.com/Krys-2424">
+	<meta name="author" content="https://github.com/Krys-2424">
+
+    <title>Krystal Chapiteau | Portfolio Dev</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         :root {
-            --primary: #667eea;
-            --secondary: #764ba2;
-            --success: #48bb78;
-            --warning: #ed8936;
-            --danger: #f56565;
-            --dark: #2d3748;
-            --light: #f7fafc;
-            --gray: #a0aec0;
-            --bg-main: #f7fafc;
-            --bg-card: #ffffff;
-            --text-main: #2d3748;
-            --text-muted: #a0aec0;
-            --border-color: #e2e8f0;
+            --bg-dark: #1a1a2e;
+            --bg-section: #16213e;
+            --text-primary: #f0f0ff;
+            --text-secondary: #b8c5d6;
+            --accent-cyan: #00d9ff;
+            --accent-purple: #b366ff;
+            --accent-pink: #ff66b3;
+            --accent-green: #66ff99;
+            --glow-blue: rgba(0, 217, 255, 0.4);
+            --glow-purple: rgba(179, 102, 255, 0.4);
+            --glow-pink: rgba(255, 102, 179, 0.4);
         }
 
-        [data-theme="dark"] {
-            --bg-main: #1a202c;
-            --bg-card: #2d3748;
-            --text-main: #f7fafc;
-            --text-muted: #a0aec0;
-            --border-color: #4a5568;
-            --light: #2d3748;
-            --dark: #f7fafc;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: var(--text-primary);
+            overflow-x: hidden;
             line-height: 1.6;
-            color: var(--text-main);
-            background: var(--bg-main);
-            transition: background 0.3s, color 0.3s;
-        }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .header {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .subtitle { opacity: 0.9; font-size: 1.1rem; }
-        .section { margin: 2rem 0; }
-        .card {
-            background: var(--bg-card);
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            margin-bottom: 1.5rem;
-            transition: background 0.3s;
-        }
-        .upload-area {
-            border: 3px dashed var(--primary);
-            border-radius: 12px;
-            padding: 3rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .upload-area:hover { background: rgba(102, 126, 234, 0.05); border-color: var(--secondary); }
-        .upload-icon { font-size: 4rem; margin-bottom: 1rem; }
-        .file-info { margin-top: 1.5rem; padding: 1rem; background: var(--bg-main); border-radius: 8px; border: 1px solid var(--border-color); }
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 500;
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-            color: white;
-        }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4); }
-        .text-small { font-size: 0.875rem; color: var(--gray); }
-        .text-muted { color: var(--gray); }
-        .footer {
-            background: var(--dark);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-            margin-top: 4rem;
-        }
-        .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
-        .summary-card {
-            background: var(--bg-card);
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            transition: background 0.3s;
-        }
-        .summary-icon { font-size: 2.5rem; }
-        .summary-card h3 { font-size: 2rem; color: var(--primary); margin: 0; }
-        .summary-card p { color: var(--text-muted); margin: 0; }
-        .tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; border-bottom: 2px solid var(--border-color); }
-        .tab { background: none; border: none; padding: 1rem 1.5rem; cursor: pointer; font-size: 1rem; color: var(--text-muted); border-bottom: 3px solid transparent; }
-        .tab.active { color: var(--primary); border-bottom-color: var(--primary); }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-        .btn-method { background: var(--bg-main); color: var(--text-main); margin: 0.25rem; border: 1px solid var(--border-color); }
-        .btn-method.active { background: var(--primary); color: white; }
-        .method-buttons { margin-bottom: 1.5rem; }
-        .prediction-controls { display: flex; gap: 1rem; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; }
-        .select, .input-small { padding: 0.5rem; border: 2px solid var(--border-color); border-radius: 8px; font-size: 1rem; background: var(--bg-card); color: var(--text-main); }
-        .input-small { width: 100px; }
-        .nlp-suggestions { margin-bottom: 1.5rem; padding: 1rem; background: var(--bg-main); border-radius: 8px; border: 1px solid var(--border-color); }
-        .suggestion-btn { display: inline-block; margin: 0.25rem; padding: 0.5rem 1rem; background: var(--bg-card); border: 2px solid var(--primary); border-radius: 20px; color: var(--primary); cursor: pointer; font-size: 0.9rem; }
-        .suggestion-btn:hover { background: var(--primary); color: white; }
-        .nlp-input-container { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
-        .input-full { flex: 1; padding: 0.75rem; border: 2px solid var(--border-color); border-radius: 8px; font-size: 1rem; background: var(--bg-card); color: var(--text-main); }
-        .nlp-response { min-height: 100px; padding: 1.5rem; background: var(--bg-main); border-radius: 8px; margin-top: 1rem; border: 1px solid var(--border-color); }
-        .charts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; margin-top: 1.5rem; }
-        .loader { border: 4px solid var(--border-color); border-top: 4px solid var(--primary); border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 2rem auto; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .loading-text { text-align: center; color: var(--text-muted); font-size: 1.1rem; }
-
-        /* Toggle theme switch */
-        .theme-toggle {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--bg-card);
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .theme-toggle-label { font-size: 0.9rem; color: var(--text-main); }
-        .theme-switch {
-            width: 50px;
-            height: 26px;
-            background: var(--gray);
-            border-radius: 13px;
             position: relative;
-            transition: background 0.3s;
         }
-        .theme-switch::after {
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(179, 102, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(0, 217, 255, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 20%, rgba(255, 102, 179, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Étoiles animées en arrière-plan */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--accent-cyan);
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: twinkle 3s infinite;
+            box-shadow: 0 0 4px var(--accent-cyan);
+        }
+
+        .star:nth-child(3n) {
+            background: var(--accent-purple);
+            box-shadow: 0 0 4px var(--accent-purple);
+        }
+
+        .star:nth-child(5n) {
+            background: var(--accent-pink);
+            box-shadow: 0 0 4px var(--accent-pink);
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.95), rgba(22, 33, 62, 0.95));
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            border-bottom: 2px solid transparent;
+            border-image: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink)) 1;
+            box-shadow: 0 4px 20px rgba(0, 217, 255, 0.3),
+                        0 0 40px rgba(179, 102, 255, 0.2);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent-cyan);
+            text-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        nav a::after {
             content: '';
             position: absolute;
-            width: 22px;
-            height: 22px;
-            background: white;
-            border-radius: 50%;
-            top: 2px;
-            left: 2px;
-            transition: transform 0.3s;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-cyan);
+            transition: width 0.3s;
         }
-        [data-theme="dark"] .theme-switch { background: var(--primary); }
-        [data-theme="dark"] .theme-switch::after { transform: translateX(24px); }
 
-        /* Chart type selector */
-        .chart-controls {
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Toggle langue */
+        .lang-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 2rem;
+            z-index: 1001;
+            background: linear-gradient(135deg, var(--bg-section), #1a1a2e);
+            border: 2px solid var(--accent-purple);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px var(--glow-purple);
+        }
+
+        .lang-toggle:hover {
+            box-shadow: 0 6px 25px var(--glow-purple),
+                        0 0 30px var(--glow-pink);
+            transform: scale(1.05);
+            border-color: var(--accent-pink);
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 6rem 2rem 2rem;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px var(--accent-cyan));
+        }
+
+        @keyframes glow {
+            0%, 100% { 
+                filter: drop-shadow(0 0 20px var(--accent-cyan)) 
+                        drop-shadow(0 0 30px var(--accent-purple)); 
+            }
+            33% { 
+                filter: drop-shadow(0 0 25px var(--accent-purple)) 
+                        drop-shadow(0 0 35px var(--accent-pink)); 
+            }
+            66% { 
+                filter: drop-shadow(0 0 25px var(--accent-pink)) 
+                        drop-shadow(0 0 35px var(--accent-cyan)); 
+            }
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--accent-cyan);
+            text-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        h2::before {
+            content: '▸ ';
+            color: var(--accent-pink);
+        }
+
+        /* Hero Section */
+        #hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin: 1rem 0;
+        }
+
+        .hero-cta {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: 2px solid var(--accent-cyan);
+            background: transparent;
+            color: var(--accent-cyan);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: var(--accent-cyan);
+            color: var(--bg-dark);
+            box-shadow: 0 0 20px var(--accent-cyan);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            border-color: var(--accent-purple);
+            color: var(--accent-purple);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-purple);
+            box-shadow: 0 0 20px var(--accent-purple);
+        }
+
+        .btn-download {
+            border-color: var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        .btn-download:hover {
+            background: var(--accent-green);
+            color: var(--bg-dark);
+            box-shadow: 0 0 20px var(--accent-green);
+        }
+
+        /* Projets Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(22, 33, 62, 0.8), rgba(26, 26, 46, 0.8));
+            border: 2px solid var(--accent-cyan);
+            border-radius: 10px;
+            padding: 2rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px var(--glow-blue);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(179, 102, 255, 0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 10px 40px var(--glow-cyan),
+                        0 0 60px var(--glow-purple),
+                        0 0 80px var(--glow-pink);
+            border-color: var(--accent-purple);
+            background: linear-gradient(135deg, rgba(22, 33, 62, 0.95), rgba(26, 26, 46, 0.95));
+        }
+
+        .project-status {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .status-complete {
+            background: var(--accent-green);
+            color: var(--bg-dark);
+        }
+
+        .status-progress {
+            background: var(--accent-pink);
+            color: var(--bg-dark);
+        }
+
+        .project-card h3 {
+            color: var(--accent-cyan);
+            margin-bottom: 1rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tech-tag {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.3), rgba(179, 102, 255, 0.3));
+            padding: 0.3rem 0.8rem;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            border: 1px solid var(--accent-cyan);
+            box-shadow: 0 0 10px var(--glow-blue);
+            transition: all 0.3s;
+        }
+
+        .tech-tag:hover {
+            box-shadow: 0 0 15px var(--glow-purple);
+            border-color: var(--accent-purple);
+            transform: translateY(-2px);
+        }
+
+        .project-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Certifications */
+        .certifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .certification-card {
+            background: linear-gradient(135deg, rgba(22, 33, 62, 0.8), rgba(26, 26, 46, 0.8));
+            border: 2px solid var(--accent-purple);
+            border-radius: 10px;
+            padding: 2rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px var(--glow-purple);
+        }
+
+        .certification-card::before {
+            content: '🏅';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            opacity: 0.3;
+        }
+
+        .certification-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 10px 40px var(--glow-purple),
+                        0 0 60px var(--glow-pink);
+            border-color: var(--accent-pink);
+        }
+
+        .certification-card h3 {
+            color: var(--accent-cyan);
+            margin-bottom: 0.5rem;
+            padding-right: 2.5rem;
+        }
+
+        .certification-org {
+            color: var(--accent-purple);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .certification-date {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .certification-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .certification-links {
             display: flex;
             gap: 1rem;
-            align-items: center;
-            margin-bottom: 1.5rem;
             flex-wrap: wrap;
         }
-        .chart-type-btn {
-            padding: 0.5rem 1rem;
-            border: 2px solid var(--border-color);
-            background: var(--bg-card);
-            color: var(--text-main);
-            border-radius: 8px;
+
+        /* Compétences */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category h3 {
+            color: var(--accent-purple);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .skill-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .skill-bar {
+            height: 10px;
+            background: rgba(26, 26, 46, 0.6);
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid var(--accent-cyan);
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5),
+                        0 0 10px var(--glow-blue);
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
+            width: 0;
+            transition: width 1.5s ease-out;
+            box-shadow: 0 0 15px var(--glow-cyan),
+                        0 0 25px var(--glow-purple);
+            animation: pulse-bar 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-bar {
+            0%, 100% { opacity: 0.9; }
+            50% { opacity: 1; }
+        }
+
+        .skill-item.animate .skill-progress {
+            width: var(--skill-level);
+        }
+
+        /* À propos */
+        #about .container {
+            max-width: 800px;
+            text-align: center;
+        }
+
+        #about p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Contact */
+        #contact {
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-item a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent-purple);
+            text-shadow: 0 0 10px var(--accent-purple);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(22, 33, 62, 0.9), rgba(26, 26, 46, 0.9));
+            color: var(--text-secondary);
+            border-top: 2px solid transparent;
+            border-image: linear-gradient(90deg, var(--accent-pink), var(--accent-purple), var(--accent-cyan)) 1;
+            box-shadow: 0 -4px 20px var(--glow-purple);
+        }
+
+        /* Gamification - Level Badge */
+        .level-badge {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+            border: 3px solid var(--accent-cyan);
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            box-shadow: 0 0 30px var(--glow-purple),
+                        0 0 50px var(--glow-pink);
+            animation: float 3s ease-in-out infinite;
             cursor: pointer;
             transition: all 0.3s;
         }
-        .chart-type-btn:hover { border-color: var(--primary); }
-        .chart-type-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
-        /* Anomaly explanation card */
-        .anomaly-card {
-            padding: 1.5rem;
-            background: var(--bg-main);
-            border-left: 4px solid var(--danger);
-            border-radius: 8px;
-            margin-bottom: 1rem;
+        .level-badge:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 50px var(--glow-cyan),
+                        0 0 70px var(--glow-purple);
         }
-        .anomaly-card.warning { border-left-color: var(--warning); }
-        .anomaly-card h4 { color: var(--danger); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
-        .anomaly-card.warning h4 { color: var(--warning); }
-        .anomaly-card p { margin: 0.25rem 0; color: var(--text-main); }
-        .anomaly-card .explanation {
-            margin-top: 0.75rem;
-            padding: 0.75rem;
-            background: var(--bg-card);
-            border-radius: 6px;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-        .anomaly-values {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
-        .anomaly-value {
-            background: var(--danger);
+
+        .level-badge .level-number {
+            font-size: 2rem;
+            font-weight: bold;
             color: white;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
+        }
+
+        .level-badge .level-text {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Progress bar de scroll */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
+            z-index: 1001;
+            transition: width 0.1s;
+            box-shadow: 0 0 10px var(--glow-cyan);
+        }
+
+        /* Achievement notification */
+        .achievement {
+            position: fixed;
+            bottom: 120px;
+            right: 2rem;
+            background: linear-gradient(135deg, rgba(22, 33, 62, 0.98), rgba(26, 26, 46, 0.98));
+            border: 2px solid var(--accent-green);
+            border-radius: 10px;
+            padding: 1rem 1.5rem;
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 4px 30px var(--glow-purple);
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .achievement.show {
+            display: flex;
+        }
+
+        .achievement-icon {
+            font-size: 2rem;
+        }
+
+        .achievement-text h4 {
+            color: var(--accent-green);
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .achievement-text p {
+            color: var(--text-secondary);
+            margin: 0;
             font-size: 0.85rem;
         }
-        .stat-card {
-            background: var(--bg-main);
-            padding: 1rem;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-        }
-        .stat-card h4 { color: var(--primary); margin-bottom: 0.5rem; }
-        .stat-card p { color: var(--text-main); margin: 0.25rem 0; }
 
-        /* Export buttons */
-        .export-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
-        .btn-export {
-            padding: 0.75rem 1.25rem;
-            border: 2px solid var(--border-color);
+
+        /* XP Bar */
+        .xp-bar {
+            position: fixed;
+            top: 70px;
+            right: 2rem;
+            width: 200px;
+            z-index: 1000;
+            background: rgba(26, 26, 46, 0.9);
+            padding: 0.8rem;
             border-radius: 10px;
-            background: var(--bg-main);
-            color: var(--text-main);
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            border: 2px solid var(--accent-cyan);
+            box-shadow: 0 4px 20px var(--glow-blue);
+        }
+
+        .xp-text {
             display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
         }
-        .btn-export:hover {
-            border-color: var(--primary);
-            background: var(--primary);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+
+        .xp-progress {
+            height: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            overflow: hidden;
         }
-        .btn-export:active {
-            transform: translateY(0);
+
+        .xp-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            width: 0%;
+            transition: width 0.5s ease-out;
+            box-shadow: 0 0 10px var(--glow-cyan);
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            nav ul { gap: 1.5rem; flex-wrap: wrap; }
+            .hero-cta { flex-direction: column; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .level-badge { width: 60px; height: 60px; bottom: 1rem; right: 1rem; }
+            .level-badge .level-number { font-size: 1.5rem; }
+            .xp-bar { width: 150px; right: 1rem; }
+            .achievement { right: 1rem; bottom: 80px; }
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <!-- SheetJS pour Excel -->
-    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-    <!-- sql.js pour SQLite -->
-    <script src="https://cdn.jsdelivr.net/npm/sql.js@1.8.0/dist/sql-wasm.min.js"></script>
 </head>
 <body>
-    <!-- Theme Toggle -->
-    <div class="theme-toggle" id="themeToggle">
-        <span class="theme-toggle-label">Mode</span>
-        <div class="theme-switch"></div>
-        <span id="themeIcon">☀️</span>
+    <!-- Barre de progression de scroll -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Étoiles animées -->
+    <div class="stars" id="stars"></div>
+
+
+
+    <!-- XP Bar -->
+    <div class="xp-bar">
+        <div class="xp-text">
+            <span>XP</span>
+            <span id="xpText">450/800</span>
+        </div>
+        <div class="xp-progress">
+            <div class="xp-fill" id="xpFill" style="width: 56%"></div>
+        </div>
     </div>
 
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <h1>🤖 DataInsight AI</h1>
-            <p class="subtitle">Analyse de données intelligente - 100% local, sans API externe</p>
+    <!-- Achievement Notification -->
+    <div class="achievement" id="achievement">
+        <div class="achievement-icon">🏆</div>
+        <div class="achievement-text">
+            <h4 id="achievementTitle">Achievement Unlocked!</h4>
+            <p id="achievementDesc">Portfolio Explorer</p>
         </div>
-    </header>
+    </div>
 
-    <!-- Main Content -->
-    <main class="container">
-        <!-- Section Bienvenue -->
-        <section class="section card" style="text-align: center; margin-bottom: 2rem;">
-            <h2>👋 Bienvenue sur DataInsight AI</h2>
-            <p style="font-size: 1.1rem; color: #666; margin: 1rem 0;">
-                Votre outil d'analyse de données intelligent, 100% local et gratuit.
-            </p>
-            <p style="color: #888;">
-                Importez un fichier (CSV, Excel, SQLite, JSON, XML) pour commencer l'analyse automatique de vos données.
-            </p>
-        </section>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#hero" data-fr="Accueil" data-en="Home">Accueil</a></li>
+            <li><a href="#projects" data-fr="Projets" data-en="Projects">Projets</a></li>
+            <li><a href="#skills" data-fr="Compétences" data-en="Skills">Compétences</a></li>
+            <li><a href="#certifications" data-fr="Certifications" data-en="Certifications">Certifications</a></li>
+            <li><a href="#about" data-fr="À propos" data-en="About">À propos</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-        <!-- Section Upload -->
-        <section id="uploadSection" class="section card">
-            <h2>📤 Commencer l'analyse</h2>
-            <div class="upload-area" id="uploadArea">
-                <div class="upload-icon">📁</div>
-                <p>Glissez votre fichier ici</p>
-                <p class="text-small">ou cliquez pour sélectionner</p>
-                <p class="text-small" style="margin-top: 0.5rem; color: var(--primary);">
-                    📊 CSV | 📗 Excel (.xlsx, .xls) | 🗄️ SQLite (.db, .sqlite) | 📋 JSON | 📄 XML
+    <!-- Toggle langue -->
+    <div class="lang-toggle" onclick="toggleLanguage()">
+        <span id="lang-text">FR / EN</span>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero" class="visible">
+        <div class="container">
+            <div class="hero-content">
+                <h1 data-fr="Krystal Chapiteau" data-en="Krystal Chapiteau">Krystal Chapiteau</h1>
+                <p data-fr="Étudiante BTS SIO • Développeuse en devenir • Gameuse de code" 
+                   data-en="BTS SIO Student • Aspiring Developer • Code Gamer">
+                    Étudiante BTS SIO <span class="pixel-heart"></span> Développeuse en devenir <span class="pixel-coin"></span> Gameuse de code
                 </p>
-                <input type="file" id="fileInput" accept=".csv,.xlsx,.xls,.db,.sqlite,.sqlite3,.json,.xml" hidden>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn" data-fr=" Mes quêtes" data-en=" My Quests"> Mes quêtes</a>
+                    <a href="#contact" class="btn btn-secondary" data-fr=" Contact" data-en=" Contact"> Contact</a>
+                </div>
             </div>
-            <div id="fileInfo" class="file-info" style="display: none;">
-                <p><strong>Fichier:</strong> <span id="fileName"></span></p>
-                <p><strong>Taille:</strong> <span id="fileSize"></span></p>
-                <button class="btn btn-primary" id="analyzeBtn">Analyser</button>
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Section Loading -->
-        <section id="loadingSection" class="section" style="display: none;">
-            <div class="card">
-                <div class="loader"></div>
-                <p class="loading-text">Analyse en cours...</p>
-            </div>
-        </section>
-
-        <!-- Section Results -->
-        <section id="resultsSection" class="section" style="display: none;">
-            <!-- Summary Cards -->
-            <div class="summary-grid">
-                <div class="summary-card">
-                    <div class="summary-icon">📋</div>
-                    <div>
-                        <h3 id="totalRows">-</h3>
-                        <p>Lignes</p>
+    <!-- Projets -->
+    <section id="projects">
+        <div class="container">
+            <h2 data-fr=" Mes Quêtes Accomplies" data-en=" My Completed Quests"> Mes Quêtes Accomplies</h2>
+            <div class="projects-grid">
+                <!-- Projet 1 - AI_TDAH -->
+                <div class="project-card">
+                    <span class="project-status status-complete" data-fr="⭐ Complété" data-en="⭐ Complete">⭐ Complété</span>
+                    <h3>AI_TDAH</h3>
+                    <p data-fr="Assistant pédagogique IA adapté aux personnes TDAH. Décomposition de tâches, feedback personnalisé et apprentissage adaptatif."
+                       data-en="AI educational assistant adapted for people with ADHD. Task decomposition, personalized feedback and adaptive learning.">
+                        Assistant pédagogique IA adapté aux personnes TDAH. Décomposition de tâches, feedback personnalisé et apprentissage adaptatif.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">IA</span>
+                        <span class="tech-tag">Puter.js</span>
+                        <span class="tech-tag">HTML/CSS</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Krys-2424/AI_TDAH" class="btn" target="_blank">💻 GitHub</a>
+                        <a href="https://krys-2424.github.io/AI_TDAH/" class="btn btn-secondary" target="_blank" data-fr="🚀 Démo" data-en="🚀 Demo">🚀 Démo</a>
+                        <a href="https://github.com/Krys-2424/AI_TDAH/archive/refs/heads/main.zip" class="btn btn-download" target="_blank" data-fr="📥 Télécharger" data-en="📥 Download">📥 Télécharger</a>
                     </div>
                 </div>
-                <div class="summary-card">
-                    <div class="summary-icon">📊</div>
-                    <div>
-                        <h3 id="totalColumns">-</h3>
-                        <p>Colonnes</p>
+
+                <!-- Projet 2 - DataInsight -->
+                <div class="project-card">
+                    <span class="project-status status-complete" data-fr="⭐ Complété" data-en="⭐ Complete">⭐ Complété</span>
+                    <h3>DataInsight AI</h3>
+                    <p data-fr="Application d'analyse de données avec IA. Import multi-format (CSV, Excel, SQLite, JSON, XML) et export vers 6 formats différents."
+                       data-en="Data analysis application with AI. Multi-format import (CSV, Excel, SQLite, JSON, XML) and export to 6 different formats.">
+                        Application d'analyse de données avec IA. Import multi-format (CSV, Excel, SQLite, JSON, XML) et export vers 6 formats différents.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Chart.js</span>
+                        <span class="tech-tag">SheetJS</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Krys-2424/Datainsight" class="btn" target="_blank">💻 GitHub</a>
+                        <a href="https://krys-2424.github.io/Datainsight/" class="btn btn-secondary" target="_blank" data-fr="🚀 Démo" data-en="🚀 Demo">🚀 Démo</a>
+                        <a href="https://github.com/Krys-2424/Datainsight/archive/refs/heads/main.zip" class="btn btn-download" target="_blank" data-fr="📥 Télécharger" data-en="📥 Download">📥 Télécharger</a>
                     </div>
                 </div>
-                <div class="summary-card">
-                    <div class="summary-icon">⚠️</div>
-                    <div>
-                        <h3 id="totalAnomalies">-</h3>
-                        <p>Anomalies</p>
+
+                <!-- Projet 3 - Site Personnel -->
+                <div class="project-card">
+                    <span class="project-status status-progress" data-fr="🔄 En cours" data-en="🔄 In Progress">🔄 En cours</span>
+                    <h3 data-fr="Site Personnel" data-en="Personal Website">Site Personnel</h3>
+                    <p data-fr="Portfolio gamifié avec design rétro-futuriste. Système d'achievements, barre XP et animations cosmiques."
+                       data-en="Gamified portfolio with retro-futuristic design. Achievement system, XP bar and cosmic animations.">
+                        Portfolio gamifié avec design rétro-futuriste. Système d'achievements, barre XP et animations cosmiques.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Gamification</span>
                     </div>
-                </div>
-                <div class="summary-card">
-                    <div class="summary-icon">📈</div>
-                    <div>
-                        <h3 id="totalInsights">-</h3>
-                        <p>Insights</p>
+                    <div class="project-links">
+                        <a href="https://github.com/Krys-2424/site-perso" class="btn" target="_blank">💻 GitHub</a>
+                        <a href="https://krys-2424.github.io/site-perso/" class="btn btn-secondary" target="_blank" data-fr="🚀 Démo" data-en="🚀 Demo">🚀 Démo</a>
+                        <a href="https://github.com/Krys-2424/site-perso/archive/refs/heads/main.zip" class="btn btn-download" target="_blank" data-fr="📥 Télécharger" data-en="📥 Download">📥 Télécharger</a>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Export Section -->
-            <div class="card" style="margin-bottom: 1.5rem;">
-                <h3>💾 Exporter / Convertir les données</h3>
-                <p class="text-muted" style="margin-bottom: 1rem;">Téléchargez vos données dans le format de votre choix</p>
-                <div class="export-buttons">
-                    <button class="btn btn-export" data-format="csv" title="Télécharger en CSV">
-                        📊 CSV
-                    </button>
-                    <button class="btn btn-export" data-format="xlsx" title="Télécharger en Excel">
-                        📗 Excel
-                    </button>
-                    <button class="btn btn-export" data-format="json" title="Télécharger en JSON">
-                        📋 JSON
-                    </button>
-                    <button class="btn btn-export" data-format="xml" title="Télécharger en XML">
-                        📄 XML
-                    </button>
-                    <button class="btn btn-export" data-format="sql" title="Télécharger en SQL">
-                        🗄️ SQL
-                    </button>
-                    <button class="btn btn-export" data-format="html" title="Télécharger en HTML">
-                        🌐 HTML
-                    </button>
-                </div>
-            </div>
-
-            <!-- Tabs -->
-            <div class="tabs">
-                <button class="tab active" data-tab="overview">Vue d'ensemble</button>
-                <button class="tab" data-tab="anomalies">Anomalies</button>
-                <button class="tab" data-tab="predictions">Prédictions</button>
-                <button class="tab" data-tab="nlp">Assistant IA</button>
-            </div>
-
-            <!-- Tab: Overview -->
-            <div id="overviewTab" class="tab-content active">
-                <div class="card">
-                    <h3>📊 Statistiques descriptives</h3>
-                    <div id="statsContainer"></div>
-                </div>
-
-                <div class="card">
-                    <h3>🔗 Corrélations</h3>
-                    <div id="correlationsContainer"></div>
-                </div>
-
-                <div class="card">
-                    <h3>📈 Visualisations</h3>
-                    <div class="chart-controls">
-                        <span style="color: var(--text-muted);">Type de graphique :</span>
-                        <button class="chart-type-btn active" data-chart="line">📈 Ligne</button>
-                        <button class="chart-type-btn" data-chart="bar">📊 Barres</button>
-                        <button class="chart-type-btn" data-chart="pie">🥧 Camembert</button>
-                        <button class="chart-type-btn" data-chart="doughnut">🍩 Anneau</button>
-                        <button class="chart-type-btn" data-chart="radar">🕸️ Radar</button>
-                        <button class="chart-type-btn" data-chart="polarArea">🎯 Polaire</button>
-                        <select id="chartColumnSelect" class="select" style="margin-left: 1rem;">
-                            <option value="">Colonne...</option>
-                        </select>
+    <!-- Compétences -->
+    <section id="skills">
+        <div class="container">
+            <h2 data-fr="⚡ Compétences & Stats" data-en="⚡ Skills & Stats">⚡ Compétences & Stats</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3 data-fr=" Langages" data-en=" Languages"> Langages</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Python</span>
+                            <span>75% </span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="--skill-level: 75%"></div>
+                        </div>
                     </div>
-                    <div class="charts-grid" id="chartsContainer"></div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>JavaScript</span>
+                            <span>70% </span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="--skill-level: 70%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>HTML/CSS</span>
+                            <span>80% </span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="--skill-level: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>SQL</span>
+                            <span>65% </span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="--skill-level: 65%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3 data-fr=" Outils" data-en=" Tools"> Outils</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Git/GitHub</span>
+                            <span>70% </span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="--skill-level: 70%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>VS Code</span>
+                            <span>85% </span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="--skill-level: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span data-fr="Design Web" data-en="Web Design">Design Web</span>
+                            <span>70% </span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="--skill-level: 70%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Linux</span>
+                            <span>60% </span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="--skill-level: 60%"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Tab: Anomalies -->
-            <div id="anomaliesTab" class="tab-content">
-                <div class="card">
-                    <h3>🔍 Détection d'anomalies</h3>
-                    <div class="method-buttons">
-                        <button class="btn btn-method active" data-method="all">Toutes</button>
-                        <button class="btn btn-method" data-method="zscore">Z-Score</button>
-                        <button class="btn btn-method" data-method="iqr">IQR</button>
-                        <button class="btn btn-method" data-method="isolation_forest">Isolation Forest</button>
+    <!-- Certifications -->
+    <section id="certifications">
+        <div class="container">
+            <h2 data-fr="🏅 Certifications & Badges" data-en="🏅 Certifications & Badges">🏅 Certifications & Badges</h2>
+            <div class="certifications-grid">
+                <!-- Certification 1 - Exemple à remplacer -->
+                <div class="certification-card">
+                    <h3 data-fr="Titre de la certification" data-en="Certification Title">Titre de la certification</h3>
+                    <div class="certification-org" data-fr="Organisme délivrant" data-en="Issuing Organization">Organisme délivrant</div>
+                    <div class="certification-date" data-fr="📅 Date d'obtention" data-en="📅 Date obtained">📅 Date d'obtention</div>
+                    <p class="certification-desc" data-fr="Description de la formation suivie et des compétences acquises lors de cette certification."
+                       data-en="Description of the training followed and skills acquired during this certification.">
+                        Description de la formation suivie et des compétences acquises lors de cette certification.
+                    </p>
+                    <div class="certification-links">
+                        <a href="#" class="btn btn-download" target="_blank" data-fr="📥 Télécharger la preuve" data-en="📥 Download proof">📥 Télécharger la preuve</a>
                     </div>
-                    <div id="anomaliesContainer"></div>
+                </div>
+
+                <!-- Certification 2 - Exemple à remplacer -->
+                <div class="certification-card">
+                    <h3 data-fr="Titre de la certification 2" data-en="Certification Title 2">Titre de la certification 2</h3>
+                    <div class="certification-org" data-fr="Organisme délivrant" data-en="Issuing Organization">Organisme délivrant</div>
+                    <div class="certification-date" data-fr="📅 Date d'obtention" data-en="📅 Date obtained">📅 Date d'obtention</div>
+                    <p class="certification-desc" data-fr="Description de la formation suivie et des compétences acquises lors de cette certification."
+                       data-en="Description of the training followed and skills acquired during this certification.">
+                        Description de la formation suivie et des compétences acquises lors de cette certification.
+                    </p>
+                    <div class="certification-links">
+                        <a href="#" class="btn btn-download" target="_blank" data-fr="📥 Télécharger la preuve" data-en="📥 Download proof">📥 Télécharger la preuve</a>
+                    </div>
+                </div>
+
+                <!-- Ajoute d'autres certifications ici en copiant le bloc ci-dessus -->
+
+            </div>
+        </div>
+    </section>
+
+    <!-- À propos -->
+    <section id="about">
+        <div class="container">
+            <h2 data-fr="🌟 À propos de moi" data-en="🌟 About Me">🌟 À propos de moi</h2>
+            <p data-fr="Hey ! Moi c'est Krystal, étudiante en BTS SIO passionnée par le développement. Je code comme je joue : avec stratégie et détermination. Chaque projet est une nouvelle quête à accomplir !"
+               data-en="Hey! I'm Krystal, a BTS SIO student passionate about development. I code like I play: with strategy and determination. Each project is a new quest to complete!">
+                Hey ! Moi c'est Krystal, étudiante en BTS SIO passionnée par le développement. Je code comme je joue : avec stratégie et détermination. Chaque projet est une nouvelle quête à accomplir !
+            </p>
+            <p data-fr=" Objectif actuel : Monter en level dans le dev web et mobile, débloquer de nouvelles compétences en Python, et trouver un stage où je pourrai mettre mes skills en action."
+               data-en=" Current objective: Level up in web and mobile dev, unlock new Python skills, and find an internship where I can put my skills into action.">
+                 Objectif actuel : Monter en level dans le dev web et mobile, débloquer de nouvelles compétences en Python, et trouver un stage où je pourrai mettre mes skills en action.
+            </p>
+            <p data-fr=" Ma force : Transformer les bugs en features et les problèmes en solutions créatives. Boss fight accepted!"
+               data-en=" My strength: Turning bugs into features and problems into creative solutions. Boss fight accepted!">
+                 Ma force : Transformer les bugs en features et les problèmes en solutions créatives. Boss fight accepted!
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <h2 data-fr="📬 Contact - Rejoins la partie" data-en="📬 Contact - Join the Game">📬 Contact - Rejoins la partie</h2>
+            <p data-fr="Tu as un projet cool ou une opportunité de stage ? Envoie-moi un message !" 
+               data-en="Got a cool project or internship opportunity? Send me a message!">
+                Tu as un projet cool ou une opportunité de stage ? Envoie-moi un message !
+            </p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📧 Email</span>
+                    <a href="mailto:krystalmarylou@outlook.com">krystalmarylou@outlook.com</a>
+                </div>
+                <div class="contact-item">
+                    <span>💻 GitHub</span>
+                    <a href="https://github.com/Krys-2424" target="_blank">@Krys-2424</a>
+                </div>
+                <div class="contact-item">
+                    <span>🔗 LinkedIn</span>
+                    <a href="https://linkedin.com" target="_blank" data-fr="Bientôt disponible" data-en="Coming Soon">Bientôt disponible</a>
                 </div>
             </div>
-
-            <!-- Tab: Predictions -->
-            <div id="predictionsTab" class="tab-content">
-                <div class="card">
-                    <h3>🔮 Prédictions</h3>
-                    <div class="prediction-controls">
-                        <select id="predictionColumn" class="select">
-                            <option value="">Sélectionnez une colonne</option>
-                        </select>
-                        <input type="number" id="stepsAhead" value="10" min="1" max="50" class="input-small">
-                        <span>points futurs</span>
-                        <button class="btn btn-primary" id="predictBtn">Prédire</button>
-                    </div>
-                    <div id="predictionsContainer"></div>
-                </div>
-            </div>
-
-            <!-- Tab: NLP -->
-            <div id="nlpTab" class="tab-content">
-                <div class="card">
-                    <h3>💬 Assistant en français</h3>
-                    <p class="text-muted">Posez vos questions en langage naturel</p>
-                    
-                    <div class="nlp-suggestions">
-                        <p><strong>Exemples :</strong></p>
-                        <button class="suggestion-btn">Crée un graphique en ligne des ventes</button>
-                        <button class="suggestion-btn">Prédis les ventes pour les 5 prochains mois</button>
-                        <button class="suggestion-btn">Détecte les anomalies</button>
-                        <button class="suggestion-btn">Montre les corrélations</button>
-                        <button class="suggestion-btn">Analyse les statistiques</button>
-                    </div>
-
-                    <div class="nlp-input-container">
-                        <input type="text" id="nlpInput" class="input-full" 
-                               placeholder="Ex: Crée un graphique des ventes par mois...">
-                        <button class="btn btn-primary" id="nlpSubmitBtn">Envoyer</button>
-                    </div>
-
-                    <div id="nlpResponse" class="nlp-response"></div>
-                </div>
-            </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>DataInsight AI - Analyse de données intelligente sans API externe</p>
-            <p class="text-small">Propulsé par Python, scikit-learn, spaCy - 100% gratuit et local</p>
-        </div>
+    <footer>
+        <p data-fr="© 2025 Krystal Chapiteau. Codé avec passion et pixels " 
+           data-en="© 2025 Krystal Chapiteau. Coded with passion and pixels ">
+            © 2025 Krystal Chapiteau. Codé avec passion et pixels 
+        </p>
     </footer>
 
     <script>
-        // Version autonome - fonctionne sans serveur
-        let csvData = null;
-        let headers = [];
-        let numericColumns = [];
-        let currentChart = null;
-        let currentChartType = 'line';
-        let currentChartColumn = null;
-        let allStats = {};
-
-        document.addEventListener('DOMContentLoaded', function() {
-            // Theme Toggle
-            const themeToggle = document.getElementById('themeToggle');
-            const themeIcon = document.getElementById('themeIcon');
-            const savedTheme = localStorage.getItem('theme') || 'light';
-
-            if (savedTheme === 'dark') {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                themeIcon.textContent = '🌙';
+        // Génération des étoiles
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 100;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
             }
+        }
 
-            themeToggle.addEventListener('click', () => {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                if (currentTheme === 'dark') {
-                    document.documentElement.removeAttribute('data-theme');
-                    localStorage.setItem('theme', 'light');
-                    themeIcon.textContent = '☀️';
-                } else {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                    localStorage.setItem('theme', 'dark');
-                    themeIcon.textContent = '🌙';
-                }
-                // Regenerer le graphique avec les bonnes couleurs
-                if (csvData && currentChartColumn) {
-                    updateChart(currentChartType, currentChartColumn);
-                }
-            });
-            const uploadArea = document.getElementById('uploadArea');
-            const fileInput = document.getElementById('fileInput');
-            const fileInfo = document.getElementById('fileInfo');
-            const fileName = document.getElementById('fileName');
-            const fileSize = document.getElementById('fileSize');
-            const analyzeBtn = document.getElementById('analyzeBtn');
-            const loadingSection = document.getElementById('loadingSection');
-            const resultsSection = document.getElementById('resultsSection');
-            const uploadSection = document.getElementById('uploadSection');
+        // Barre de progression de scroll
+        function updateScrollProgress() {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+            
+            // Update XP based on scroll
+            const xp = Math.floor((scrollPercent / 100) * 350) + 450;
+            document.getElementById('xpText').textContent = xp + '/800';
+            document.getElementById('xpFill').style.width = ((xp / 800) * 100) + '%';
+        }
 
-            // Clic sur zone upload
-            uploadArea.addEventListener('click', () => fileInput.click());
+        // Achievements system
+        const achievements = {
+            scrolled50: { title: '🔍 Explorateur', desc: 'Scroll 50% du site', triggered: false },
+            visitedProjects: { title: '⚔️ Chasseur de quêtes', desc: 'Section Projets visitée', triggered: false },
+            visitedSkills: { title: '📊 Analyste', desc: 'Section Compétences visitée', triggered: false },
+            scrolled100: { title: '🏆 Master Explorer', desc: 'Site complètement exploré', triggered: false }
+        };
 
-            // Drag & Drop
-            uploadArea.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                uploadArea.style.background = 'rgba(102, 126, 234, 0.1)';
-            });
-            uploadArea.addEventListener('dragleave', () => {
-                uploadArea.style.background = '';
-            });
-            uploadArea.addEventListener('drop', (e) => {
-                e.preventDefault();
-                uploadArea.style.background = '';
-                if (e.dataTransfer.files.length > 0) {
-                    handleFile(e.dataTransfer.files[0]);
-                }
-            });
+        function showAchievement(achievement) {
+            const achievementEl = document.getElementById('achievement');
+            const titleEl = document.getElementById('achievementTitle');
+            const descEl = document.getElementById('achievementDesc');
+            
+            titleEl.textContent = achievement.title;
+            descEl.textContent = achievement.desc;
+            achievementEl.classList.add('show');
+            
+            setTimeout(() => {
+                achievementEl.classList.remove('show');
+            }, 3000);
+        }
 
-            fileInput.addEventListener('change', (e) => {
-                if (e.target.files.length > 0) {
-                    handleFile(e.target.files[0]);
-                }
-            });
-
-            function handleFile(file) {
-                const validExtensions = ['.csv', '.xlsx', '.xls', '.db', '.sqlite', '.sqlite3', '.json', '.xml'];
-                const ext = '.' + file.name.split('.').pop().toLowerCase();
-
-                if (!validExtensions.includes(ext)) {
-                    alert('Format non supporte. Formats acceptes: CSV, Excel (.xlsx, .xls), SQLite (.db, .sqlite), JSON, XML');
-                    return;
-                }
-
-                fileName.textContent = file.name;
-                fileSize.textContent = formatSize(file.size);
-                fileInfo.style.display = 'block';
-                window.selectedFile = file;
-                window.fileExtension = ext;
-            }
-
-            function formatSize(bytes) {
-                if (bytes === 0) return '0 Bytes';
-                const k = 1024;
-                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-                const i = Math.floor(Math.log(bytes) / Math.log(k));
-                return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
-            }
-
-            // Bouton Analyser
-            analyzeBtn.addEventListener('click', async function() {
-                if (!window.selectedFile) return;
-
-                loadingSection.style.display = 'block';
-                uploadSection.style.display = 'none';
-
-                const ext = window.fileExtension;
-                const file = window.selectedFile;
-
-                try {
-                    if (ext === '.csv') {
-                        const reader = new FileReader();
-                        reader.onload = function(e) {
-                            parseCSV(e.target.result);
-                            finishAnalysis();
-                        };
-                        reader.readAsText(file);
-                    } else if (ext === '.xlsx' || ext === '.xls') {
-                        const reader = new FileReader();
-                        reader.onload = function(e) {
-                            parseExcel(e.target.result);
-                            finishAnalysis();
-                        };
-                        reader.readAsArrayBuffer(file);
-                    } else if (ext === '.db' || ext === '.sqlite' || ext === '.sqlite3') {
-                        const reader = new FileReader();
-                        reader.onload = async function(e) {
-                            await parseSQLite(e.target.result);
-                            finishAnalysis();
-                        };
-                        reader.readAsArrayBuffer(file);
-                    } else if (ext === '.json') {
-                        const reader = new FileReader();
-                        reader.onload = function(e) {
-                            parseJSON(e.target.result);
-                            finishAnalysis();
-                        };
-                        reader.readAsText(file);
-                    } else if (ext === '.xml') {
-                        const reader = new FileReader();
-                        reader.onload = function(e) {
-                            parseXML(e.target.result);
-                            finishAnalysis();
-                        };
-                        reader.readAsText(file);
+        // Scroll reveal avec achievements
+        function revealOnScroll() {
+            const sections = document.querySelectorAll('section');
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight * 0.75) {
+                    section.classList.add('visible');
+                    
+                    // Trigger achievements
+                    if (section.id === 'projects' && !achievements.visitedProjects.triggered) {
+                        achievements.visitedProjects.triggered = true;
+                        showAchievement(achievements.visitedProjects);
                     }
-                } catch (error) {
-                    loadingSection.style.display = 'none';
-                    uploadSection.style.display = 'block';
-                    alert('Erreur lors de la lecture du fichier: ' + error.message);
-                }
-            });
-
-            function finishAnalysis() {
-                setTimeout(() => {
-                    loadingSection.style.display = 'none';
-                    resultsSection.style.display = 'block';
-                    displayResults();
-                }, 500);
-            }
-
-            // Gestion des onglets
-            document.querySelectorAll('.tab').forEach(tab => {
-                tab.addEventListener('click', () => {
-                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                    document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
-                    tab.classList.add('active');
-                    document.getElementById(tab.dataset.tab + 'Tab').classList.add('active');
-                });
-            });
-
-            // Gestion des boutons d'export
-            document.querySelectorAll('.btn-export').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const format = btn.dataset.format;
-                    handleExport(format);
-                });
-            });
-
-            // Gestion du type de graphique
-            document.querySelectorAll('.chart-type-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    document.querySelectorAll('.chart-type-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    currentChartType = btn.dataset.chart;
-                    if (currentChartColumn) {
-                        updateChart(currentChartType, currentChartColumn);
+                    
+                    if (section.id === 'skills') {
+                        const skillItems = section.querySelectorAll('.skill-item');
+                        skillItems.forEach(item => item.classList.add('animate'));
+                        
+                        if (!achievements.visitedSkills.triggered) {
+                            achievements.visitedSkills.triggered = true;
+                            showAchievement(achievements.visitedSkills);
+                        }
                     }
-                });
-            });
-
-            // Selection de colonne pour le graphique
-            document.getElementById('chartColumnSelect').addEventListener('change', (e) => {
-                if (e.target.value) {
-                    currentChartColumn = e.target.value;
-                    updateChart(currentChartType, currentChartColumn);
                 }
             });
+            
+            // Scroll achievements
+            if (scrollPercent > 50 && !achievements.scrolled50.triggered) {
+                achievements.scrolled50.triggered = true;
+                showAchievement(achievements.scrolled50);
+            }
+            
+            if (scrollPercent > 95 && !achievements.scrolled100.triggered) {
+                achievements.scrolled100.triggered = true;
+                showAchievement(achievements.scrolled100);
+            }
+        }
 
-            // Gestion des boutons de methode d'anomalie
-            document.querySelectorAll('.btn-method').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    document.querySelectorAll('.btn-method').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    displayAnomalies(btn.dataset.method);
-                });
-            });
-
-            // Gestion des predictions
-            document.getElementById('predictBtn').addEventListener('click', generatePredictions);
-
-            // Gestion NLP - Assistant IA
-            document.getElementById('nlpSubmitBtn').addEventListener('click', processNLPQuery);
-            document.getElementById('nlpInput').addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') processNLPQuery();
-            });
-
-            // Suggestions NLP - clic sur les boutons d'exemple
-            document.querySelectorAll('.suggestion-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    document.getElementById('nlpInput').value = btn.textContent;
-                    processNLPQuery();
-                });
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             });
         });
 
-        function parseCSV(text) {
-            const lines = text.trim().split('\n');
-            headers = lines[0].split(/[,;]/).map(h => h.trim().replace(/"/g, ''));
-            csvData = [];
-            numericColumns = [];
-
-            for (let i = 1; i < lines.length; i++) {
-                const values = lines[i].split(/[,;]/).map(v => v.trim().replace(/"/g, ''));
-                if (values.length === headers.length) {
-                    const row = {};
-                    headers.forEach((h, idx) => {
-                        const val = values[idx];
-                        row[h] = isNaN(parseFloat(val)) ? val : parseFloat(val);
-                    });
-                    csvData.push(row);
-                }
-            }
-
-            // Detecter colonnes numeriques
-            headers.forEach(h => {
-                const values = csvData.map(row => row[h]).filter(v => typeof v === 'number' && !isNaN(v));
-                if (values.length > csvData.length * 0.5) {
-                    numericColumns.push(h);
-                }
+        // Toggle langue
+        let currentLang = 'fr';
+        function toggleLanguage() {
+            currentLang = currentLang === 'fr' ? 'en' : 'fr';
+            
+            document.querySelectorAll('[data-fr]').forEach(el => {
+                el.textContent = el.getAttribute('data-' + currentLang);
             });
+            
+            document.getElementById('lang-text').textContent = currentLang.toUpperCase() + ' / ' + (currentLang === 'fr' ? 'EN' : 'FR');
         }
 
-        // Parser Excel (.xlsx, .xls)
-        function parseExcel(arrayBuffer) {
-            const workbook = XLSX.read(arrayBuffer, { type: 'array' });
-            const firstSheetName = workbook.SheetNames[0];
-            const worksheet = workbook.Sheets[firstSheetName];
-
-            // Convertir en JSON
-            const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-
-            if (jsonData.length === 0) {
-                alert('Le fichier Excel est vide');
-                return;
-            }
-
-            headers = jsonData[0].map(h => String(h || 'Colonne').trim());
-            csvData = [];
-            numericColumns = [];
-
-            for (let i = 1; i < jsonData.length; i++) {
-                const values = jsonData[i];
-                if (values && values.length > 0) {
-                    const row = {};
-                    headers.forEach((h, idx) => {
-                        const val = values[idx];
-                        if (val === undefined || val === null || val === '') {
-                            row[h] = null;
-                        } else if (typeof val === 'number') {
-                            row[h] = val;
-                        } else {
-                            const parsed = parseFloat(val);
-                            row[h] = isNaN(parsed) ? val : parsed;
-                        }
-                    });
-                    csvData.push(row);
-                }
-            }
-
-            detectNumericColumns();
-        }
-
-        // Parser SQLite (.db, .sqlite)
-        async function parseSQLite(arrayBuffer) {
-            try {
-                const SQL = await initSqlJs({
-                    locateFile: file => `https://cdn.jsdelivr.net/npm/sql.js@1.8.0/dist/${file}`
-                });
-
-                const db = new SQL.Database(new Uint8Array(arrayBuffer));
-
-                // Lister les tables
-                const tables = db.exec("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'");
-
-                if (tables.length === 0 || tables[0].values.length === 0) {
-                    alert('Aucune table trouvee dans la base de donnees');
-                    return;
-                }
-
-                // Si plusieurs tables, demander a l'utilisateur
-                const tableNames = tables[0].values.map(t => t[0]);
-                let selectedTable = tableNames[0];
-
-                if (tableNames.length > 1) {
-                    selectedTable = prompt(
-                        `Plusieurs tables trouvees. Choisissez une table:\n${tableNames.map((t, i) => `${i + 1}. ${t}`).join('\n')}\n\nEntrez le nom de la table:`,
-                        tableNames[0]
-                    );
-                    if (!tableNames.includes(selectedTable)) {
-                        selectedTable = tableNames[0];
-                    }
-                }
-
-                // Recuperer les donnees de la table
-                const result = db.exec(`SELECT * FROM "${selectedTable}"`);
-
-                if (result.length === 0) {
-                    alert('La table est vide');
-                    return;
-                }
-
-                headers = result[0].columns;
-                csvData = [];
-                numericColumns = [];
-
-                result[0].values.forEach(row => {
-                    const rowObj = {};
-                    headers.forEach((h, idx) => {
-                        const val = row[idx];
-                        if (val === null || val === undefined) {
-                            rowObj[h] = null;
-                        } else if (typeof val === 'number') {
-                            rowObj[h] = val;
-                        } else {
-                            const parsed = parseFloat(val);
-                            rowObj[h] = isNaN(parsed) ? val : parsed;
-                        }
-                    });
-                    csvData.push(rowObj);
-                });
-
-                db.close();
-                detectNumericColumns();
-            } catch (error) {
-                console.error('Erreur SQLite:', error);
-                alert('Erreur lors de la lecture du fichier SQLite: ' + error.message);
-            }
-        }
-
-        // Parser JSON
-        function parseJSON(text) {
-            try {
-                let data = JSON.parse(text);
-
-                // Si c'est un objet avec une cle contenant un tableau, utiliser ce tableau
-                if (!Array.isArray(data)) {
-                    const keys = Object.keys(data);
-                    for (const key of keys) {
-                        if (Array.isArray(data[key])) {
-                            data = data[key];
-                            break;
-                        }
-                    }
-                }
-
-                if (!Array.isArray(data) || data.length === 0) {
-                    alert('Le fichier JSON doit contenir un tableau d\'objets');
-                    return;
-                }
-
-                // Extraire les en-tetes de tous les objets
-                const allKeys = new Set();
-                data.forEach(item => {
-                    if (typeof item === 'object' && item !== null) {
-                        Object.keys(item).forEach(k => allKeys.add(k));
-                    }
-                });
-
-                headers = Array.from(allKeys);
-                csvData = [];
-                numericColumns = [];
-
-                data.forEach(item => {
-                    if (typeof item === 'object' && item !== null) {
-                        const row = {};
-                        headers.forEach(h => {
-                            const val = item[h];
-                            if (val === undefined || val === null) {
-                                row[h] = null;
-                            } else if (typeof val === 'number') {
-                                row[h] = val;
-                            } else if (typeof val === 'string') {
-                                const parsed = parseFloat(val);
-                                row[h] = isNaN(parsed) ? val : parsed;
-                            } else {
-                                row[h] = String(val);
-                            }
-                        });
-                        csvData.push(row);
-                    }
-                });
-
-                detectNumericColumns();
-            } catch (error) {
-                console.error('Erreur JSON:', error);
-                alert('Erreur lors de la lecture du fichier JSON: ' + error.message);
-            }
-        }
-
-        // Parser XML
-        function parseXML(text) {
-            try {
-                const parser = new DOMParser();
-                const xmlDoc = parser.parseFromString(text, 'text/xml');
-
-                // Verifier les erreurs de parsing
-                const parseError = xmlDoc.querySelector('parsererror');
-                if (parseError) {
-                    alert('Erreur de format XML: ' + parseError.textContent);
-                    return;
-                }
-
-                // Trouver les elements de donnees (enfants du root qui se repetent)
-                const root = xmlDoc.documentElement;
-                const children = Array.from(root.children);
-
-                if (children.length === 0) {
-                    alert('Le fichier XML est vide ou mal structure');
-                    return;
-                }
-
-                // Grouper par nom de tag pour trouver les elements de donnees
-                const tagCounts = {};
-                children.forEach(child => {
-                    tagCounts[child.tagName] = (tagCounts[child.tagName] || 0) + 1;
-                });
-
-                // Trouver le tag le plus frequent (ce sont les enregistrements)
-                let dataTag = Object.keys(tagCounts).reduce((a, b) => tagCounts[a] > tagCounts[b] ? a : b);
-                const dataElements = children.filter(c => c.tagName === dataTag);
-
-                if (dataElements.length === 0) {
-                    alert('Aucune donnee trouvee dans le fichier XML');
-                    return;
-                }
-
-                // Extraire les en-tetes (attributs + elements enfants)
-                const allKeys = new Set();
-                dataElements.forEach(el => {
-                    // Attributs
-                    Array.from(el.attributes).forEach(attr => allKeys.add('@' + attr.name));
-                    // Elements enfants
-                    Array.from(el.children).forEach(child => allKeys.add(child.tagName));
-                    // Texte direct si pas d'enfants
-                    if (el.children.length === 0 && el.textContent.trim()) {
-                        allKeys.add('_text');
-                    }
-                });
-
-                headers = Array.from(allKeys);
-                csvData = [];
-                numericColumns = [];
-
-                dataElements.forEach(el => {
-                    const row = {};
-                    headers.forEach(h => {
-                        let val = null;
-                        if (h.startsWith('@')) {
-                            // Attribut
-                            val = el.getAttribute(h.substring(1));
-                        } else if (h === '_text') {
-                            val = el.textContent.trim();
-                        } else {
-                            // Element enfant
-                            const child = el.querySelector(h);
-                            val = child ? child.textContent.trim() : null;
-                        }
-
-                        if (val === null || val === '') {
-                            row[h] = null;
-                        } else {
-                            const parsed = parseFloat(val);
-                            row[h] = isNaN(parsed) ? val : parsed;
-                        }
-                    });
-                    csvData.push(row);
-                });
-
-                detectNumericColumns();
-            } catch (error) {
-                console.error('Erreur XML:', error);
-                alert('Erreur lors de la lecture du fichier XML: ' + error.message);
-            }
-        }
-
-        // Fonction commune pour detecter les colonnes numeriques
-        function detectNumericColumns() {
-            numericColumns = [];
-            headers.forEach(h => {
-                const values = csvData.map(row => row[h]).filter(v => typeof v === 'number' && !isNaN(v));
-                if (values.length > csvData.length * 0.5) {
-                    numericColumns.push(h);
-                }
-            });
-        }
-
-        // ==================== FONCTIONS D'EXPORT ====================
-
-        // Fonction utilitaire pour telecharger un fichier
-        function downloadFile(content, filename, mimeType) {
-            const blob = new Blob([content], { type: mimeType });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
-
-        // Export CSV
-        function exportToCSV() {
-            if (!csvData || csvData.length === 0) {
-                alert('Aucune donnee a exporter');
-                return;
-            }
-
-            let csv = headers.join(';') + '\n';
-            csvData.forEach(row => {
-                const values = headers.map(h => {
-                    const val = row[h];
-                    if (val === null || val === undefined) return '';
-                    if (typeof val === 'string' && (val.includes(';') || val.includes('"') || val.includes('\n'))) {
-                        return '"' + val.replace(/"/g, '""') + '"';
-                    }
-                    return val;
-                });
-                csv += values.join(';') + '\n';
-            });
-
-            downloadFile(csv, 'export_donnees.csv', 'text/csv;charset=utf-8');
-        }
-
-        // Export Excel
-        function exportToExcel() {
-            if (!csvData || csvData.length === 0) {
-                alert('Aucune donnee a exporter');
-                return;
-            }
-
-            // Creer les donnees pour le worksheet
-            const wsData = [headers];
-            csvData.forEach(row => {
-                wsData.push(headers.map(h => row[h] !== null && row[h] !== undefined ? row[h] : ''));
-            });
-
-            const ws = XLSX.utils.aoa_to_sheet(wsData);
-            const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, 'Donnees');
-
-            // Telecharger
-            XLSX.writeFile(wb, 'export_donnees.xlsx');
-        }
-
-        // Export JSON
-        function exportToJSON() {
-            if (!csvData || csvData.length === 0) {
-                alert('Aucune donnee a exporter');
-                return;
-            }
-
-            const jsonContent = JSON.stringify(csvData, null, 2);
-            downloadFile(jsonContent, 'export_donnees.json', 'application/json');
-        }
-
-        // Export XML
-        function exportToXML() {
-            if (!csvData || csvData.length === 0) {
-                alert('Aucune donnee a exporter');
-                return;
-            }
-
-            let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
-            xml += '<data>\n';
-
-            csvData.forEach((row, index) => {
-                xml += '  <record id="' + (index + 1) + '">\n';
-                headers.forEach(h => {
-                    const val = row[h];
-                    const safeTag = h.replace(/[^a-zA-Z0-9_]/g, '_').replace(/^[0-9]/, '_$&');
-                    const safeVal = val !== null && val !== undefined
-                        ? String(val).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-                        : '';
-                    xml += '    <' + safeTag + '>' + safeVal + '</' + safeTag + '>\n';
-                });
-                xml += '  </record>\n';
-            });
-
-            xml += '</data>';
-            downloadFile(xml, 'export_donnees.xml', 'application/xml');
-        }
-
-        // Export SQL (script CREATE TABLE + INSERT)
-        function exportToSQL() {
-            if (!csvData || csvData.length === 0) {
-                alert('Aucune donnee a exporter');
-                return;
-            }
-
-            const tableName = 'donnees_exportees';
-            let sql = '-- Script SQL genere par DataInsight AI\n';
-            sql += '-- Date: ' + new Date().toISOString() + '\n\n';
-
-            // CREATE TABLE
-            sql += 'CREATE TABLE IF NOT EXISTS ' + tableName + ' (\n';
-            sql += '  id INTEGER PRIMARY KEY AUTOINCREMENT,\n';
-
-            const columnDefs = headers.map(h => {
-                const safeCol = h.replace(/[^a-zA-Z0-9_]/g, '_').replace(/^[0-9]/, '_$&');
-                // Detecter le type
-                const values = csvData.map(r => r[h]).filter(v => v !== null && v !== undefined);
-                const isNumeric = values.length > 0 && values.every(v => typeof v === 'number');
-                const hasDecimals = isNumeric && values.some(v => !Number.isInteger(v));
-
-                let type = 'TEXT';
-                if (isNumeric) {
-                    type = hasDecimals ? 'REAL' : 'INTEGER';
-                }
-                return '  ' + safeCol + ' ' + type;
-            });
-            sql += columnDefs.join(',\n');
-            sql += '\n);\n\n';
-
-            // INSERT statements
-            csvData.forEach(row => {
-                const safeCols = headers.map(h => h.replace(/[^a-zA-Z0-9_]/g, '_').replace(/^[0-9]/, '_$&'));
-                const values = headers.map(h => {
-                    const val = row[h];
-                    if (val === null || val === undefined) return 'NULL';
-                    if (typeof val === 'number') return val;
-                    return "'" + String(val).replace(/'/g, "''") + "'";
-                });
-                sql += 'INSERT INTO ' + tableName + ' (' + safeCols.join(', ') + ') VALUES (' + values.join(', ') + ');\n';
-            });
-
-            downloadFile(sql, 'export_donnees.sql', 'text/plain');
-        }
-
-        // Export HTML (tableau)
-        function exportToHTML() {
-            if (!csvData || csvData.length === 0) {
-                alert('Aucune donnee a exporter');
-                return;
-            }
-
-            let html = `<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Export Donnees - DataInsight AI</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 20px; background: #f7fafc; }
-        h1 { color: #667eea; }
-        table { border-collapse: collapse; width: 100%; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        th { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px; text-align: left; }
-        td { padding: 10px 12px; border-bottom: 1px solid #e2e8f0; }
-        tr:hover { background: #f0f4ff; }
-        tr:nth-child(even) { background: #f7fafc; }
-        tr:nth-child(even):hover { background: #f0f4ff; }
-        .info { color: #666; margin-bottom: 20px; }
-    </style>
-</head>
-<body>
-    <h1>Export de donnees</h1>
-    <p class="info">Genere par DataInsight AI le ${new Date().toLocaleString('fr-FR')}</p>
-    <p class="info">${csvData.length} lignes | ${headers.length} colonnes</p>
-    <table>
-        <thead>
-            <tr>
-                ${headers.map(h => '<th>' + h + '</th>').join('')}
-            </tr>
-        </thead>
-        <tbody>
-`;
-
-            csvData.forEach(row => {
-                html += '            <tr>\n';
-                headers.forEach(h => {
-                    const val = row[h];
-                    const displayVal = val !== null && val !== undefined ? String(val) : '';
-                    const escapedVal = displayVal.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-                    html += '                <td>' + escapedVal + '</td>\n';
-                });
-                html += '            </tr>\n';
-            });
-
-            html += `        </tbody>
-    </table>
-</body>
-</html>`;
-
-            downloadFile(html, 'export_donnees.html', 'text/html');
-        }
-
-        // Gestionnaire d'export
-        function handleExport(format) {
-            switch(format) {
-                case 'csv': exportToCSV(); break;
-                case 'xlsx': exportToExcel(); break;
-                case 'json': exportToJSON(); break;
-                case 'xml': exportToXML(); break;
-                case 'sql': exportToSQL(); break;
-                case 'html': exportToHTML(); break;
-                default: alert('Format non supporte');
-            }
-        }
-
-        // ==================== FIN FONCTIONS D'EXPORT ====================
-
-        function displayResults() {
-            document.getElementById('totalRows').textContent = csvData.length;
-            document.getElementById('totalColumns').textContent = headers.length;
-
-            // Calculer statistiques detaillees
-            allStats = {};
-            let totalAnomalies = 0;
-
-            numericColumns.forEach(col => {
-                const values = csvData.map(r => r[col]).filter(v => typeof v === 'number' && !isNaN(v));
-                if (values.length > 0) {
-                    const mean = values.reduce((a, b) => a + b, 0) / values.length;
-                    const sorted = [...values].sort((a, b) => a - b);
-                    const median = sorted[Math.floor(sorted.length / 2)];
-                    const std = Math.sqrt(values.reduce((sum, v) => sum + Math.pow(v - mean, 2), 0) / values.length);
-                    const min = Math.min(...values);
-                    const max = Math.max(...values);
-
-                    // Quartiles pour IQR
-                    const q1 = sorted[Math.floor(sorted.length * 0.25)];
-                    const q3 = sorted[Math.floor(sorted.length * 0.75)];
-                    const iqr = q3 - q1;
-                    const lowerBound = q1 - 1.5 * iqr;
-                    const upperBound = q3 + 1.5 * iqr;
-
-                    // Detecter anomalies avec differentes methodes
-                    const zscoreAnomalies = values.map((v, i) => ({ value: v, index: i, zscore: (v - mean) / std }))
-                        .filter(item => Math.abs(item.zscore) > 3);
-
-                    const iqrAnomalies = values.map((v, i) => ({ value: v, index: i }))
-                        .filter(item => item.value < lowerBound || item.value > upperBound);
-
-                    totalAnomalies += zscoreAnomalies.length;
-
-                    allStats[col] = {
-                        mean, median, std, min, max, q1, q3, iqr, lowerBound, upperBound,
-                        count: values.length,
-                        zscoreAnomalies,
-                        iqrAnomalies,
-                        values
-                    };
-                }
-            });
-
-            document.getElementById('totalAnomalies').textContent = totalAnomalies;
-            document.getElementById('totalInsights').textContent = Object.keys(allStats).length;
-
-            // Afficher statistiques
-            let statsHTML = '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">';
-            for (const [col, s] of Object.entries(allStats)) {
-                statsHTML += `
-                    <div class="stat-card">
-                        <h4>${col}</h4>
-                        <p><strong>Moyenne:</strong> ${s.mean.toFixed(2)}</p>
-                        <p><strong>Mediane:</strong> ${s.median.toFixed(2)}</p>
-                        <p><strong>Ecart-type:</strong> ${s.std.toFixed(2)}</p>
-                        <p><strong>Min:</strong> ${s.min.toFixed(2)} | <strong>Max:</strong> ${s.max.toFixed(2)}</p>
-                        <p><strong>Q1:</strong> ${s.q1.toFixed(2)} | <strong>Q3:</strong> ${s.q3.toFixed(2)}</p>
-                    </div>
-                `;
-            }
-            statsHTML += '</div>';
-            document.getElementById('statsContainer').innerHTML = statsHTML;
-
-            // Correlations
-            let corrHTML = '';
-            if (numericColumns.length >= 2) {
-                for (let i = 0; i < numericColumns.length; i++) {
-                    for (let j = i + 1; j < numericColumns.length; j++) {
-                        const corr = calculateCorrelation(numericColumns[i], numericColumns[j]);
-                        if (Math.abs(corr) > 0.3) {
-                            const color = corr > 0 ? '#48bb78' : '#f56565';
-                            corrHTML += `
-                                <div style="display: flex; justify-content: space-between; padding: 0.75rem; background: var(--bg-main); border-radius: 4px; margin-bottom: 0.5rem; border: 1px solid var(--border-color);">
-                                    <span style="color: var(--text-main);">${numericColumns[i]} - ${numericColumns[j]}</span>
-                                    <span style="font-weight: bold; color: ${color};">${(corr * 100).toFixed(0)}%</span>
-                                </div>
-                            `;
-                        }
-                    }
-                }
-            }
-            document.getElementById('correlationsContainer').innerHTML = corrHTML || '<p style="color: var(--text-muted);">Aucune correlation forte detectee</p>';
-
-            // Remplir le selecteur de colonnes pour les graphiques
-            const chartColumnSelect = document.getElementById('chartColumnSelect');
-            chartColumnSelect.innerHTML = '<option value="">Colonne...</option>';
-            numericColumns.forEach(col => {
-                chartColumnSelect.innerHTML += `<option value="${col}">${col}</option>`;
-            });
-
-            // Graphique initial
-            if (numericColumns.length > 0) {
-                currentChartColumn = numericColumns[0];
-                chartColumnSelect.value = currentChartColumn;
-                updateChart('line', currentChartColumn);
-            }
-
-            // Anomalies avec explications detaillees
-            displayAnomalies('all');
-
-            // Predictions dropdown
-            const select = document.getElementById('predictionColumn');
-            select.innerHTML = '<option value="">Selectionnez une colonne</option>';
-            numericColumns.forEach(col => {
-                select.innerHTML += `<option value="${col}">${col}</option>`;
-            });
-        }
-
-        function calculateCorrelation(col1, col2) {
-            const pairs = csvData.filter(r => typeof r[col1] === 'number' && typeof r[col2] === 'number');
-            if (pairs.length < 3) return 0;
-
-            const x = pairs.map(r => r[col1]);
-            const y = pairs.map(r => r[col2]);
-            const n = x.length;
-
-            const sumX = x.reduce((a, b) => a + b, 0);
-            const sumY = y.reduce((a, b) => a + b, 0);
-            const sumXY = x.reduce((sum, xi, i) => sum + xi * y[i], 0);
-            const sumX2 = x.reduce((sum, xi) => sum + xi * xi, 0);
-            const sumY2 = y.reduce((sum, yi) => sum + yi * yi, 0);
-
-            const num = n * sumXY - sumX * sumY;
-            const den = Math.sqrt((n * sumX2 - sumX * sumX) * (n * sumY2 - sumY * sumY));
-
-            return den === 0 ? 0 : num / den;
-        }
-
-        function updateChart(type, column) {
-            if (!csvData || !column) return;
-
-            const values = csvData.map(r => r[column]).filter(v => typeof v === 'number' && !isNaN(v));
-            const displayValues = values.slice(0, 50);
-
-            // Detecter le theme pour les couleurs
-            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-            const textColor = isDark ? '#f7fafc' : '#2d3748';
-            const gridColor = isDark ? '#4a5568' : '#e2e8f0';
-
-            // Couleurs pour les differents types
-            const colors = [
-                'rgba(102, 126, 234, 0.8)',
-                'rgba(118, 75, 162, 0.8)',
-                'rgba(72, 187, 120, 0.8)',
-                'rgba(237, 137, 54, 0.8)',
-                'rgba(245, 101, 101, 0.8)',
-                'rgba(66, 153, 225, 0.8)'
-            ];
-
-            // Detruire l'ancien graphique
-            if (currentChart) {
-                currentChart.destroy();
-            }
-
-            document.getElementById('chartsContainer').innerHTML = '<canvas id="mainChart"></canvas>';
-            const ctx = document.getElementById('mainChart');
-
-            let chartData, chartOptions;
-
-            if (type === 'pie' || type === 'doughnut' || type === 'polarArea') {
-                // Pour ces types, on groupe les donnees
-                const grouped = {};
-                displayValues.forEach(v => {
-                    const key = Math.round(v);
-                    grouped[key] = (grouped[key] || 0) + 1;
-                });
-                const labels = Object.keys(grouped).slice(0, 10);
-                const data = labels.map(l => grouped[l]);
-
-                chartData = {
-                    labels: labels,
-                    datasets: [{
-                        data: data,
-                        backgroundColor: colors.concat(colors),
-                        borderWidth: 2,
-                        borderColor: isDark ? '#2d3748' : '#ffffff'
-                    }]
-                };
-                chartOptions = {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'right',
-                            labels: { color: textColor }
-                        },
-                        title: {
-                            display: true,
-                            text: `Distribution de ${column}`,
-                            color: textColor
-                        }
-                    }
-                };
-            } else if (type === 'radar') {
-                // Pour radar, on utilise les statistiques
-                const stats = allStats[column];
-                if (stats) {
-                    chartData = {
-                        labels: ['Min', 'Q1', 'Mediane', 'Moyenne', 'Q3', 'Max'],
-                        datasets: [{
-                            label: column,
-                            data: [stats.min, stats.q1, stats.median, stats.mean, stats.q3, stats.max],
-                            backgroundColor: 'rgba(102, 126, 234, 0.2)',
-                            borderColor: 'rgba(102, 126, 234, 1)',
-                            pointBackgroundColor: 'rgba(102, 126, 234, 1)'
-                        }]
-                    };
-                    chartOptions = {
-                        responsive: true,
-                        scales: {
-                            r: {
-                                ticks: { color: textColor },
-                                pointLabels: { color: textColor },
-                                grid: { color: gridColor }
-                            }
-                        },
-                        plugins: {
-                            legend: { labels: { color: textColor } }
-                        }
-                    };
-                }
-            } else {
-                // Line et Bar
-                chartData = {
-                    labels: displayValues.map((_, i) => i + 1),
-                    datasets: [{
-                        label: column,
-                        data: displayValues,
-                        borderColor: 'rgba(102, 126, 234, 1)',
-                        backgroundColor: type === 'bar' ? 'rgba(102, 126, 234, 0.7)' : 'rgba(102, 126, 234, 0.1)',
-                        fill: type === 'line',
-                        tension: 0.4
-                    }]
-                };
-                chartOptions = {
-                    responsive: true,
-                    scales: {
-                        x: {
-                            ticks: { color: textColor },
-                            grid: { color: gridColor }
-                        },
-                        y: {
-                            ticks: { color: textColor },
-                            grid: { color: gridColor }
-                        }
-                    },
-                    plugins: {
-                        legend: { labels: { color: textColor } }
-                    }
-                };
-            }
-
-            currentChart = new Chart(ctx, {
-                type: type,
-                data: chartData,
-                options: chartOptions
-            });
-        }
-
-        function displayAnomalies(method) {
-            let anomHTML = '';
-            let hasAnomalies = false;
-
-            for (const [col, s] of Object.entries(allStats)) {
-                let anomalies = [];
-                let methodName = '';
-                let explanation = '';
-
-                if (method === 'all' || method === 'zscore') {
-                    if (s.zscoreAnomalies.length > 0) {
-                        hasAnomalies = true;
-                        const severityClass = s.zscoreAnomalies.some(a => Math.abs(a.zscore) > 4) ? '' : 'warning';
-                        anomHTML += `
-                            <div class="anomaly-card ${severityClass}">
-                                <h4>⚠️ ${col} - Methode Z-Score</h4>
-                                <p><strong>${s.zscoreAnomalies.length} anomalie(s) detectee(s)</strong></p>
-                                <div class="anomaly-values">
-                                    ${s.zscoreAnomalies.slice(0, 10).map(a =>
-                                        `<span class="anomaly-value">${a.value.toFixed(2)} (z=${a.zscore.toFixed(2)})</span>`
-                                    ).join('')}
-                                    ${s.zscoreAnomalies.length > 10 ? `<span class="anomaly-value">+${s.zscoreAnomalies.length - 10} autres</span>` : ''}
-                                </div>
-                                <div class="explanation">
-                                    <strong>Qu'est-ce qu'une anomalie Z-Score ?</strong><br>
-                                    Le Z-Score mesure a combien d'ecarts-types une valeur se trouve de la moyenne.
-                                    Une valeur avec |Z| > 3 signifie qu'elle est a plus de 3 ecarts-types de la moyenne,
-                                    ce qui est statistiquement tres rare (0.3% des cas dans une distribution normale).<br><br>
-                                    <strong>Pourquoi ces valeurs sont anormales :</strong><br>
-                                    - Moyenne de ${col}: ${s.mean.toFixed(2)}<br>
-                                    - Ecart-type: ${s.std.toFixed(2)}<br>
-                                    - Seuil normal: entre ${(s.mean - 3*s.std).toFixed(2)} et ${(s.mean + 3*s.std).toFixed(2)}<br>
-                                    Ces valeurs depassent ce seuil, indiquant potentiellement des erreurs de saisie,
-                                    des cas exceptionnels ou des donnees corrompues.
-                                </div>
-                            </div>
-                        `;
-                    }
-                }
-
-                if (method === 'all' || method === 'iqr') {
-                    if (s.iqrAnomalies.length > 0) {
-                        hasAnomalies = true;
-                        anomHTML += `
-                            <div class="anomaly-card warning">
-                                <h4>⚠️ ${col} - Methode IQR (Interquartile)</h4>
-                                <p><strong>${s.iqrAnomalies.length} anomalie(s) detectee(s)</strong></p>
-                                <div class="anomaly-values">
-                                    ${s.iqrAnomalies.slice(0, 10).map(a =>
-                                        `<span class="anomaly-value">${a.value.toFixed(2)}</span>`
-                                    ).join('')}
-                                    ${s.iqrAnomalies.length > 10 ? `<span class="anomaly-value">+${s.iqrAnomalies.length - 10} autres</span>` : ''}
-                                </div>
-                                <div class="explanation">
-                                    <strong>Qu'est-ce que la methode IQR ?</strong><br>
-                                    L'IQR (Interquartile Range) est la difference entre le 3eme quartile (Q3) et le 1er quartile (Q1).
-                                    Elle represente la plage ou se trouvent les 50% de donnees centrales.<br><br>
-                                    <strong>Calcul des bornes :</strong><br>
-                                    - Q1 (25%): ${s.q1.toFixed(2)}<br>
-                                    - Q3 (75%): ${s.q3.toFixed(2)}<br>
-                                    - IQR = Q3 - Q1 = ${s.iqr.toFixed(2)}<br>
-                                    - Borne inferieure = Q1 - 1.5*IQR = ${s.lowerBound.toFixed(2)}<br>
-                                    - Borne superieure = Q3 + 1.5*IQR = ${s.upperBound.toFixed(2)}<br><br>
-                                    <strong>Pourquoi ces valeurs sont anormales :</strong><br>
-                                    Toute valeur en dehors de [${s.lowerBound.toFixed(2)}, ${s.upperBound.toFixed(2)}]
-                                    est consideree comme un outlier. Cette methode est robuste car elle ne depend pas
-                                    de la moyenne qui peut etre influencee par les valeurs extremes.
-                                </div>
-                            </div>
-                        `;
-                    }
-                }
-
-                if (method === 'isolation_forest') {
-                    // Simulation simplifiee d'Isolation Forest
-                    const threshold = s.std * 2.5;
-                    const isolationAnomalies = s.values.filter(v => Math.abs(v - s.median) > threshold);
-                    if (isolationAnomalies.length > 0) {
-                        hasAnomalies = true;
-                        anomHTML += `
-                            <div class="anomaly-card">
-                                <h4>⚠️ ${col} - Methode Isolation Forest (simplifiee)</h4>
-                                <p><strong>${isolationAnomalies.length} anomalie(s) detectee(s)</strong></p>
-                                <div class="anomaly-values">
-                                    ${isolationAnomalies.slice(0, 10).map(v =>
-                                        `<span class="anomaly-value">${v.toFixed(2)}</span>`
-                                    ).join('')}
-                                </div>
-                                <div class="explanation">
-                                    <strong>Qu'est-ce qu'Isolation Forest ?</strong><br>
-                                    C'est un algorithme de machine learning qui isole les anomalies en creant des
-                                    partitions aleatoires. Les points faciles a isoler (peu de partitions necessaires)
-                                    sont consideres comme anomalies.<br><br>
-                                    <strong>Version simplifiee utilisee ici :</strong><br>
-                                    On detecte les valeurs eloignees de la mediane de plus de 2.5 ecarts-types.
-                                    La mediane (${s.median.toFixed(2)}) est plus robuste que la moyenne contre les outliers.<br><br>
-                                    <strong>Seuil de detection :</strong> |valeur - mediane| > ${threshold.toFixed(2)}
-                                </div>
-                            </div>
-                        `;
-                    }
-                }
-            }
-
-            if (!hasAnomalies) {
-                anomHTML = `
-                    <div style="padding: 2rem; text-align: center; color: var(--text-muted);">
-                        <p style="font-size: 3rem;">✅</p>
-                        <p>Aucune anomalie detectee avec cette methode.</p>
-                        <p style="font-size: 0.9rem; margin-top: 0.5rem;">
-                            Vos donnees semblent homogenes et sans valeurs aberrantes.
-                        </p>
-                    </div>
-                `;
-            }
-
-            document.getElementById('anomaliesContainer').innerHTML = anomHTML;
-        }
-
-        // Fonction de prediction avec regression lineaire et moyenne mobile
-        function generatePredictions() {
-            const column = document.getElementById('predictionColumn').value;
-            const stepsAhead = parseInt(document.getElementById('stepsAhead').value) || 10;
-
-            if (!column || !csvData) {
-                document.getElementById('predictionsContainer').innerHTML =
-                    '<p style="color: var(--warning);">Veuillez selectionner une colonne numerique.</p>';
-                return;
-            }
-
-            const values = csvData.map(r => r[column]).filter(v => typeof v === 'number' && !isNaN(v));
-
-            if (values.length < 3) {
-                document.getElementById('predictionsContainer').innerHTML =
-                    '<p style="color: var(--danger);">Pas assez de donnees pour faire des predictions (minimum 3 valeurs).</p>';
-                return;
-            }
-
-            // Methode 1: Regression lineaire
-            const linearPredictions = predictLinearRegression(values, stepsAhead);
-
-            // Methode 2: Moyenne mobile
-            const movingAvgPredictions = predictMovingAverage(values, stepsAhead);
-
-            // Methode 3: Moyenne mobile exponentielle
-            const emaPredictions = predictEMA(values, stepsAhead);
-
-            // Afficher les resultats
-            displayPredictionResults(column, values, {
-                linear: linearPredictions,
-                movingAvg: movingAvgPredictions,
-                ema: emaPredictions
-            }, stepsAhead);
-        }
-
-        // Regression lineaire simple
-        function predictLinearRegression(values, steps) {
-            const n = values.length;
-            let sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
-
-            for (let i = 0; i < n; i++) {
-                sumX += i;
-                sumY += values[i];
-                sumXY += i * values[i];
-                sumX2 += i * i;
-            }
-
-            const slope = (n * sumXY - sumX * sumY) / (n * sumX2 - sumX * sumX);
-            const intercept = (sumY - slope * sumX) / n;
-
-            const predictions = [];
-            for (let i = 0; i < steps; i++) {
-                predictions.push(slope * (n + i) + intercept);
-            }
-
-            return {
-                predictions,
-                slope,
-                intercept,
-                trend: slope > 0 ? 'hausse' : slope < 0 ? 'baisse' : 'stable'
-            };
-        }
-
-        // Moyenne mobile simple
-        function predictMovingAverage(values, steps, windowSize = 5) {
-            windowSize = Math.min(windowSize, Math.floor(values.length / 2));
-            const lastValues = values.slice(-windowSize);
-            const avg = lastValues.reduce((a, b) => a + b, 0) / lastValues.length;
-
-            // Calculer la tendance recente
-            const recentTrend = (values[values.length - 1] - values[values.length - windowSize]) / windowSize;
-
-            const predictions = [];
-            for (let i = 0; i < steps; i++) {
-                predictions.push(avg + recentTrend * i);
-            }
-
-            return {
-                predictions,
-                average: avg,
-                trend: recentTrend > 0.01 ? 'hausse' : recentTrend < -0.01 ? 'baisse' : 'stable'
-            };
-        }
-
-        // Moyenne mobile exponentielle
-        function predictEMA(values, steps, alpha = 0.3) {
-            let ema = values[0];
-            for (let i = 1; i < values.length; i++) {
-                ema = alpha * values[i] + (1 - alpha) * ema;
-            }
-
-            // Tendance basee sur les dernieres valeurs
-            const recentValues = values.slice(-5);
-            const trend = (recentValues[recentValues.length - 1] - recentValues[0]) / recentValues.length;
-
-            const predictions = [];
-            let currentEma = ema;
-            for (let i = 0; i < steps; i++) {
-                currentEma = currentEma + trend;
-                predictions.push(currentEma);
-            }
-
-            return {
-                predictions,
-                lastEma: ema,
-                trend: trend > 0.01 ? 'hausse' : trend < -0.01 ? 'baisse' : 'stable'
-            };
-        }
-
-        function displayPredictionResults(column, historicalData, predictions, steps) {
-            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-            const textColor = isDark ? '#f7fafc' : '#2d3748';
-            const gridColor = isDark ? '#4a5568' : '#e2e8f0';
-
-            // Statistiques des predictions
-            const linearLast = predictions.linear.predictions[predictions.linear.predictions.length - 1];
-            const movingAvgLast = predictions.movingAvg.predictions[predictions.movingAvg.predictions.length - 1];
-            const emaLast = predictions.ema.predictions[predictions.ema.predictions.length - 1];
-            const currentValue = historicalData[historicalData.length - 1];
-
-            let html = `
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
-                    <div class="stat-card">
-                        <h4>📈 Regression lineaire</h4>
-                        <p><strong>Tendance:</strong> ${predictions.linear.trend}</p>
-                        <p><strong>Pente:</strong> ${predictions.linear.slope.toFixed(4)}</p>
-                        <p><strong>Prediction finale:</strong> ${linearLast.toFixed(2)}</p>
-                        <p><strong>Variation:</strong> ${((linearLast - currentValue) / currentValue * 100).toFixed(1)}%</p>
-                    </div>
-                    <div class="stat-card">
-                        <h4>📊 Moyenne mobile</h4>
-                        <p><strong>Tendance:</strong> ${predictions.movingAvg.trend}</p>
-                        <p><strong>Moyenne recente:</strong> ${predictions.movingAvg.average.toFixed(2)}</p>
-                        <p><strong>Prediction finale:</strong> ${movingAvgLast.toFixed(2)}</p>
-                        <p><strong>Variation:</strong> ${((movingAvgLast - currentValue) / currentValue * 100).toFixed(1)}%</p>
-                    </div>
-                    <div class="stat-card">
-                        <h4>📉 Moyenne mobile exp.</h4>
-                        <p><strong>Tendance:</strong> ${predictions.ema.trend}</p>
-                        <p><strong>EMA actuel:</strong> ${predictions.ema.lastEma.toFixed(2)}</p>
-                        <p><strong>Prediction finale:</strong> ${emaLast.toFixed(2)}</p>
-                        <p><strong>Variation:</strong> ${((emaLast - currentValue) / currentValue * 100).toFixed(1)}%</p>
-                    </div>
-                </div>
-
-                <div class="card" style="margin-top: 1rem;">
-                    <h4>🔮 Graphique des predictions pour "${column}"</h4>
-                    <canvas id="predictionChart"></canvas>
-                </div>
-
-                <div class="card" style="margin-top: 1rem;">
-                    <h4>📋 Tableau des predictions</h4>
-                    <div style="overflow-x: auto;">
-                        <table style="width: 100%; border-collapse: collapse;">
-                            <thead>
-                                <tr style="background: var(--primary); color: white;">
-                                    <th style="padding: 0.75rem; text-align: left;">Point</th>
-                                    <th style="padding: 0.75rem; text-align: right;">Regression</th>
-                                    <th style="padding: 0.75rem; text-align: right;">Moy. Mobile</th>
-                                    <th style="padding: 0.75rem; text-align: right;">EMA</th>
-                                    <th style="padding: 0.75rem; text-align: right;">Moyenne</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${predictions.linear.predictions.map((_, i) => `
-                                    <tr style="border-bottom: 1px solid var(--border-color);">
-                                        <td style="padding: 0.5rem;">+${i + 1}</td>
-                                        <td style="padding: 0.5rem; text-align: right;">${predictions.linear.predictions[i].toFixed(2)}</td>
-                                        <td style="padding: 0.5rem; text-align: right;">${predictions.movingAvg.predictions[i].toFixed(2)}</td>
-                                        <td style="padding: 0.5rem; text-align: right;">${predictions.ema.predictions[i].toFixed(2)}</td>
-                                        <td style="padding: 0.5rem; text-align: right; font-weight: bold;">${((predictions.linear.predictions[i] + predictions.movingAvg.predictions[i] + predictions.ema.predictions[i]) / 3).toFixed(2)}</td>
-                                    </tr>
-                                `).join('')}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            `;
-
-            document.getElementById('predictionsContainer').innerHTML = html;
-
-            // Creer le graphique
-            const ctx = document.getElementById('predictionChart');
-            const displayHistorical = historicalData.slice(-20);
-            const labels = [
-                ...displayHistorical.map((_, i) => `T-${displayHistorical.length - i}`),
-                ...predictions.linear.predictions.map((_, i) => `T+${i + 1}`)
-            ];
-
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [
-                        {
-                            label: 'Donnees historiques',
-                            data: [...displayHistorical, ...Array(steps).fill(null)],
-                            borderColor: 'rgba(45, 55, 72, 1)',
-                            backgroundColor: 'rgba(45, 55, 72, 0.1)',
-                            fill: false,
-                            tension: 0.4,
-                            pointRadius: 4
-                        },
-                        {
-                            label: 'Regression lineaire',
-                            data: [...Array(displayHistorical.length).fill(null), ...predictions.linear.predictions],
-                            borderColor: 'rgba(102, 126, 234, 1)',
-                            backgroundColor: 'rgba(102, 126, 234, 0.1)',
-                            borderDash: [5, 5],
-                            fill: false,
-                            tension: 0.4
-                        },
-                        {
-                            label: 'Moyenne mobile',
-                            data: [...Array(displayHistorical.length).fill(null), ...predictions.movingAvg.predictions],
-                            borderColor: 'rgba(72, 187, 120, 1)',
-                            backgroundColor: 'rgba(72, 187, 120, 0.1)',
-                            borderDash: [5, 5],
-                            fill: false,
-                            tension: 0.4
-                        },
-                        {
-                            label: 'EMA',
-                            data: [...Array(displayHistorical.length).fill(null), ...predictions.ema.predictions],
-                            borderColor: 'rgba(237, 137, 54, 1)',
-                            backgroundColor: 'rgba(237, 137, 54, 0.1)',
-                            borderDash: [5, 5],
-                            fill: false,
-                            tension: 0.4
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        x: {
-                            ticks: { color: textColor },
-                            grid: { color: gridColor }
-                        },
-                        y: {
-                            ticks: { color: textColor },
-                            grid: { color: gridColor }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            labels: { color: textColor }
-                        },
-                        title: {
-                            display: true,
-                            text: `Predictions pour ${column} (${steps} points)`,
-                            color: textColor
-                        }
-                    }
-                }
-            });
-        }
-
-        // Fonction pour normaliser le texte (enlever les accents)
-        function normalizeText(text) {
-            return text.toLowerCase()
-                .normalize('NFD')
-                .replace(/[\u0300-\u036f]/g, '')
-                .trim();
-        }
-
-        // Traitement NLP
-        function processNLPQuery() {
-            const rawQuery = document.getElementById('nlpInput').value.trim();
-            const query = normalizeText(rawQuery);
-            const responseDiv = document.getElementById('nlpResponse');
-
-            if (!query) {
-                responseDiv.innerHTML = '<p style="color: var(--warning);">Veuillez entrer une question.</p>';
-                return;
-            }
-
-            if (!csvData) {
-                responseDiv.innerHTML = '<p style="color: var(--danger);">Veuillez d\'abord charger un fichier CSV.</p>';
-                return;
-            }
-
-            let response = '';
-
-            // Detection des intentions
-            if (query.includes('graphique') || query.includes('graph') || query.includes('visualis')) {
-                const chartType = detectChartType(query);
-                const column = detectColumn(query);
-
-                if (column) {
-                    currentChartColumn = column;
-                    currentChartType = chartType;
-                    document.getElementById('chartColumnSelect').value = column;
-                    document.querySelectorAll('.chart-type-btn').forEach(b => {
-                        b.classList.toggle('active', b.dataset.chart === chartType);
-                    });
-                    updateChart(chartType, column);
-
-                    // Basculer vers l'onglet overview
-                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                    document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
-                    document.querySelector('[data-tab="overview"]').classList.add('active');
-                    document.getElementById('overviewTab').classList.add('active');
-
-                    response = `✅ J'ai cree un graphique ${chartType === 'line' ? 'en ligne' : chartType === 'bar' ? 'en barres' : chartType === 'pie' ? 'camembert' : chartType} pour la colonne "${column}". Regardez dans l'onglet "Vue d'ensemble".`;
-                } else {
-                    response = `⚠️ Je n'ai pas trouve de colonne correspondante. Colonnes disponibles : ${numericColumns.join(', ')}`;
-                }
-            }
-            else if (query.includes('predi') || query.includes('prevoir') || query.includes('futur')) {
-                const column = detectColumn(query);
-                const steps = extractNumber(query) || 10;
-
-                if (column) {
-                    document.getElementById('predictionColumn').value = column;
-                    document.getElementById('stepsAhead').value = steps;
-
-                    // Basculer vers l'onglet predictions
-                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                    document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
-                    document.querySelector('[data-tab="predictions"]').classList.add('active');
-                    document.getElementById('predictionsTab').classList.add('active');
-
-                    generatePredictions();
-                    response = `✅ J'ai genere des predictions pour "${column}" sur ${steps} points. Regardez dans l'onglet "Predictions".`;
-                } else if (numericColumns.length > 0) {
-                    document.getElementById('predictionColumn').value = numericColumns[0];
-                    document.getElementById('stepsAhead').value = steps;
-                    generatePredictions();
-                    response = `✅ J'ai genere des predictions pour "${numericColumns[0]}" sur ${steps} points.`;
-                } else {
-                    response = `⚠️ Aucune colonne numerique trouvee pour les predictions.`;
-                }
-            }
-            else if (query.includes('anomalie') || query.includes('outlier') || query.includes('aberrant')) {
-                // Basculer vers l'onglet anomalies
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
-                document.querySelector('[data-tab="anomalies"]').classList.add('active');
-                document.getElementById('anomaliesTab').classList.add('active');
-
-                displayAnomalies('all');
-                const totalAnomalies = document.getElementById('totalAnomalies').textContent;
-                response = `✅ J'ai detecte ${totalAnomalies} anomalie(s) dans vos donnees. Regardez dans l'onglet "Anomalies" pour les details.`;
-            }
-            else if (query.includes('correlation') || query.includes('relation') || query.includes('lien')) {
-                response = `📊 **Correlations detectees :**\n\n`;
-                let hasCorrelations = false;
-
-                for (let i = 0; i < numericColumns.length; i++) {
-                    for (let j = i + 1; j < numericColumns.length; j++) {
-                        const corr = calculateCorrelation(numericColumns[i], numericColumns[j]);
-                        if (Math.abs(corr) > 0.3) {
-                            hasCorrelations = true;
-                            const strength = Math.abs(corr) > 0.7 ? 'forte' : Math.abs(corr) > 0.5 ? 'moderee' : 'faible';
-                            const direction = corr > 0 ? 'positive' : 'negative';
-                            response += `• ${numericColumns[i]} ↔ ${numericColumns[j]}: correlation ${strength} ${direction} (${(corr * 100).toFixed(0)}%)\n`;
-                        }
-                    }
-                }
-
-                if (!hasCorrelations) {
-                    response = `ℹ️ Aucune correlation significative detectee entre les colonnes numeriques.`;
-                }
-            }
-            else if (query.includes('statistique') || query.includes('stats') || query.includes('resume') || query.includes('analyse')) {
-                response = `📋 **Statistiques de vos donnees :**\n\n`;
-                response += `• Nombre de lignes : ${csvData.length}\n`;
-                response += `• Nombre de colonnes : ${headers.length}\n`;
-                response += `• Colonnes numeriques : ${numericColumns.join(', ')}\n\n`;
-
-                if (numericColumns.length > 0) {
-                    const col = numericColumns[0];
-                    const s = allStats[col];
-                    if (s) {
-                        response += `**${col}** :\n`;
-                        response += `  - Moyenne : ${s.mean.toFixed(2)}\n`;
-                        response += `  - Mediane : ${s.median.toFixed(2)}\n`;
-                        response += `  - Min : ${s.min.toFixed(2)} | Max : ${s.max.toFixed(2)}\n`;
-                    }
-                }
-            }
-            else {
-                response = `🤔 Je n'ai pas compris votre demande. Essayez :\n\n`;
-                response += `• "Cree un graphique en barres de [colonne]"\n`;
-                response += `• "Predis [colonne] pour 10 points"\n`;
-                response += `• "Detecte les anomalies"\n`;
-                response += `• "Montre les correlations"\n`;
-                response += `• "Analyse les statistiques"\n\n`;
-                response += `Colonnes disponibles : ${numericColumns.join(', ')}`;
-            }
-
-            responseDiv.innerHTML = `<div style="white-space: pre-line;">${response}</div>`;
-        }
-
-        function detectChartType(query) {
-            if (query.includes('barre') || query.includes('bar')) return 'bar';
-            if (query.includes('camembert') || query.includes('pie') || query.includes('secteur')) return 'pie';
-            if (query.includes('anneau') || query.includes('doughnut') || query.includes('donut')) return 'doughnut';
-            if (query.includes('radar') || query.includes('toile')) return 'radar';
-            if (query.includes('polaire') || query.includes('polar')) return 'polarArea';
-            return 'line';
-        }
-
-        function detectColumn(query) {
-            // Chercher une colonne mentionnee dans la requete
-            for (const col of numericColumns) {
-                if (query.includes(col.toLowerCase())) {
-                    return col;
-                }
-            }
-            // Sinon, retourner la premiere colonne numerique
-            return numericColumns.length > 0 ? numericColumns[0] : null;
-        }
-
-        function extractNumber(query) {
-            const match = query.match(/(\d+)/);
-            return match ? parseInt(match[1]) : null;
-        }
+        // Initialisation
+        createStars();
+        window.addEventListener('scroll', () => {
+            updateScrollProgress();
+            revealOnScroll();
+        });
+        revealOnScroll();
+        updateScrollProgress();
     </script>
 </body>
 </html>
